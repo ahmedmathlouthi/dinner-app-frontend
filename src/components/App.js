@@ -8,6 +8,7 @@ function App() {
   const [chips, setChips] = useState([]);
   const [recipeList, setRecipeList] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const addChip = async (value) => {
     setChips((prevState) => [...prevState, value]);
@@ -26,7 +27,7 @@ function App() {
   };
 
   const searchByIngredients = async () => {
-    if(chips){
+    if (chips) {
       setLoading(true);
       const data = await API.searchByIngredients(chips);
       setRecipeList(data);
@@ -40,6 +41,7 @@ function App() {
       getRecipes();
     } catch (error) {
       console.error(error);
+      setError(error);
       setLoading(false);
     }
   }, []);
@@ -52,7 +54,7 @@ function App() {
         onRemove={onRemove}
         submitQuery={searchByIngredients}
       />
-      <RecipeList recipeList={recipeList} isLoading={isLoading} />
+      <RecipeList recipeList={recipeList} isLoading={isLoading} error={error} />
     </div>
   );
 }

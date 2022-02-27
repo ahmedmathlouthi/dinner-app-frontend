@@ -9,6 +9,7 @@ const Recipe = (props) => {
         <img
           className="w-20 h-20 object-cover rounded-full border-2 border-indigo-500"
           src={recipe.image}
+          loading="lazy"
         />
       </div>
       <div>

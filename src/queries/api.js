@@ -23,5 +23,5 @@ export async function searchByIngredients(params) {
 
 
 function transformParams(params){
-  return params.join("&");
+  return params.join(",");
 }
